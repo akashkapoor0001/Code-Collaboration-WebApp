@@ -1,0 +1,99 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/books.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>Edit Book</h3>
+		<br>
+        {% for book in books %}
+        <form method="post" id="bookForm" action="{{ url_for('save_book')}}">
+            <div class="">                
+                <div class="">                   
+                    <div class="form-group">							
+                        <label for="book" class="control-label">Book</label>							
+                        <input type="text" name="name" id="name" autocomplete="off" class="form-control" placeholder="book name" value="{{book.name}}"/>                                       
+                    </div>                    
+                    <div class="form-group">							
+                        <label for="book" class="control-label">ISBN No</label>							
+                        <input type="text" name="isbn" id="isbn" autocomplete="off" class="form-control" placeholder="isbn name" value="{{book.isbn}}"/>                                        
+                    </div>                    
+                    <div class="form-group">							
+                        <label for="book" class="control-label">No of copy</label>			
+                        <input type="number" name="no_of_copy" id="no_of_copy" autocomplete="off" class="form-control" placeholder="No of copy" value="{{book.no_of_copy}}"/>
+                    </div>
+                    
+                    <div class="form-group">							
+                        <label for="author" class="control-label">Author</label>
+                        <select name="author" id="author" class="form-control">
+                            <option value="">Select</option>
+                            {% for author in authors %}
+                                <option value="{{author.authorid}}" {% if book.authorid == author.authorid %}selected="selected" {% endif %}>{{author.name}}</option>
+                            {% endfor %}	  							
+                        </select>
+                    </div>
+                    
+                    
+                    <div class="form-group">							
+                        <label for="publisher" class="control-label">Publisher</label>
+                        <select name="publisher" id="publisher" class="form-control">
+                            <option value="">Select</option>
+                            {% for publisher in publishers %}
+                                <option value="{{publisher.publisherid}}" {% if book.publisherid == publisher.publisherid %}selected="selected" {% endif %}>{{publisher.name}}</option>
+                            {% endfor %}								
+                        </select>
+                    </div>
+
+                    <div class="form-group">							
+                        <label for="category" class="control-label">Category</label>
+                        <select name="category" id="category" class="form-control">
+                            <option value="">Select</option>
+                            {% for category in categories %}
+                                <option value="{{category.categoryid}}"  {% if book.categoryid == category.categoryid %}selected="selected" {% endif %}>{{category.name}}</option>
+                            {% endfor %}								
+                        </select>
+                    </div>								
+                
+                    <div class="form-group">							
+                        <label for="rack" class="control-label">Rack</label>
+                        <select name="rack" id="rack" class="form-control">
+                            <option value="">Select</option>
+                            {% for rack in racks %}
+                                <option value="{{rack.rackid}}" {% if book.rackid == rack.rackid %}selected="selected" {% endif %}>{{rack.name}}</option>
+                            {% endfor %}								
+                        </select>
+                    </div>	
+                    
+                    
+                    <div class="form-group">
+                        <label for="status" class="control-label">Status</label>							
+                        <select class="form-control" id="status" name="status"/>
+                            <option value="">Select</option>							
+                            <option value="Enable">Enable</option>
+                            <option value="Disable">Disable</option>								
+                        </select>							
+                    </div>				
+                    
+                                    
+                </div>
+                <div class="">
+                    <input type="hidden" name="bookid" id="bookid" value="{{book.bookid}}" />					
+                    <input type="hidden" name="action" id="action" value="updateBook" />
+                    <input type="submit" name="save" id="save" class="btn btn-info" value="Save" />                    
+                </div>
+            </div>
+        </form>
+        {% endfor %}	
+    </div>
+			      
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	
+	</div>	
+  </body>
+</html>

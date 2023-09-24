@@ -1,0 +1,79 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/books.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>Edit Issued Book</h3>
+		<br>
+        {% for issueBook in issue_books %}
+        <form method="post" id="issuedBookForm" action="{{ url_for('save_issue_book')}}">
+            <div class="modal-content">                
+                <div class="modal-body">								
+                    <div class="form-group">							
+                        <label for="rack" class="control-label">Available Books</label>
+                        <select name="book" id="book" class="form-control">
+                            <option value="">Select</option>
+                            {% for book in books %}
+                                <option value="{{book.bookid}}" {% if book.bookid == issueBook.bookid %}selected="selected" {% endif %}>{{book.name}}</option>
+                            {% endfor %}										
+                        </select>
+                    </div>	
+                    
+                    <div class="form-group">							
+                        <label for="rack" class="control-label">User</label>
+                        <select name="users" id="users" class="form-control">
+                            <option value="">Select</option>
+                            {% for user in users %}
+                                <option value="{{user.id}}" {% if user.id == issueBook.userid %}selected="selected" {% endif %}>{{user.first_name}} {{user.last_name}}</option>
+                            {% endfor %}								
+                        </select>
+                    </div>	
+                    
+                    
+                    <div class="form-group">							
+                        <label for="expected date" class="control-label">Expected Return Date</label>
+                        <input type="datetime-local" step="1" name="expected_return_date" id="expected_return_date" autocomplete="off" value="{{issueBook.expected_return_date}}" class="form-control"/>								
+                    </div>
+                    
+                    
+                    <div class="form-group">							
+                        <label for="expected date" class="control-label">Return Date</label>
+                        <input type="datetime-local" step="1" name="return_date" id="return_date" autocomplete="off" value="{{issueBook.return_date_time}}" class="form-control"/>								
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <label for="status" class="control-label">Status</label>			
+                        <select class="form-control" id="status" name="status"/>
+                            <option value="">Select</option>							
+                            <option value="Issued" {% if issueBook.status == 'Issued' %}selected="selected" {% endif %}>Issued</option>
+                            <option value="Returned" {% if issueBook.status == 'Returned' %}selected="selected" {% endif %}>Returned</option>
+                            <option value="Not Return" {% if issueBook.status == 'Not Return' %}selected="selected" {% endif %}>Not Return</option>										
+                        </select>							
+                    </div>				
+                    
+                                    
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="issueBookId" id="issueBookId" value="{{issueBook.issuebookid}}" />					
+                    <input type="hidden" name="action" id="action" value="updateIssueBook" />
+                    <input type="submit" name="save" id="save" class="btn btn-info" value="Save" />                    
+                </div>
+            </div>
+        </form>   
+        
+        {% endfor %}	
+    </div>
+			      
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	
+	</div>	
+  </body>
+</html>

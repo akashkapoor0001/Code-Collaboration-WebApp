@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+<body>
+  <div class="container-fluid" id="main">
+  {% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>User Details</h3> 
+		<br>
+		<h4>{{user.first_name}}</h4>
+		<p><strong>Email: </strong> {{user.email}}. </p>
+		<p><strong>Role: </strong> {{user.role}} </p>       
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+  </body>
+</html>

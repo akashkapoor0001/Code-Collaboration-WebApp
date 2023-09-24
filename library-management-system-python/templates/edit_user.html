@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/user.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>Edit User</h3>
+		<br>
+        {% for user in users %}
+        <form method="post" id="userForm" action="{{ url_for('save_user')}}">
+			<div class="modal-content">			
+				<div class="modal-body">				
+					<div class="form-group">
+						<label for="country" class="control-label">Role</label>							
+						<select class="form-control" id="role" name="role"/>
+							<option value="">Select Role</option>							
+							<option value="admin" {% if user.role == 'admin' %}selected="selected" {% endif %}>Admin</option>
+							<option value="user"  {% if user.role == 'user' %}selected="selected" {% endif %}>User</option>								
+						</select>							
+					</div>
+					
+					<div class="form-group">							
+						<label for="first name" class="control-label">First Name</label>							
+						<input type="text" name="first_name" id="first_name" autocomplete="off" class="form-control" placeholder="first name" value="{{user.first_name}}"/>									
+					</div>
+					
+					<div class="form-group"
+						<label for="last name" class="control-label">Last Name</label>
+						<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" value="{{user.last_name}}">			
+					</div>	
+
+					<div class="form-group"
+						<label for="email" class="control-label">Email</label>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email"  value="{{user.email}}">			
+					</div>					
+									
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="userid" id="userid" value="value="{{user.id}}""/>						
+					<input type="hidden" name="action" id="action" value="updateUser" />
+					<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />					
+				</div>
+			</div>
+		</form>
+        {% endfor %}	
+    </div>
+			      
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	
+	</div>	
+  </body>
+</html>

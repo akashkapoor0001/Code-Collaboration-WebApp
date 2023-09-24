@@ -1,0 +1,51 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/publisher.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>Edit Publisher</h3>
+		<br>
+        {% for publisher in publishers %}
+        <form method="post" id="categoryForm" action="{{ url_for('savePublisher')}}">
+            <div class="modal-content">                
+                <div class="modal-body">						
+                    
+                    <div class="form-group">							
+                        <label for="category" class="control-label">Publisher Name</label>							
+                        <input type="text" name="name" id="name" autocomplete="off" class="form-control" placeholder="category name" value="{{publisher.name}}"/>
+                                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status" class="control-label">Status</label>							
+                        <select class="form-control" id="status" name="status"/>
+                            <option value="">Select</option>							
+                            <option value="Enable" {% if publisher.status == 'Enable' %}selected="selected" {% endif %}>Enable</option>
+                            <option value="Disable"  {% if publisher.status == 'Disable' %}selected="selected" {% endif %}>Disable</option>								
+                        </select>							
+                    </div>				
+                    
+                                    
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="publisherid" id="publisherid" value="{{publisher.publisherid}}" />					
+                    <input type="hidden" name="action" id="action" value="updatePublisher" />
+                    <input type="submit" name="save" id="save" class="btn btn-info" value="Save" />                    
+                </div>
+            </div>
+        </form>        
+        {% endfor %}	
+    </div>
+			      
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	
+	</div>	
+  </body>
+</html>

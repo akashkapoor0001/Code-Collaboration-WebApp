@@ -1,0 +1,153 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/books.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>Book Listing</h3>
+			<br>
+			<div class="float-right mb-2 col-md-2">
+				<button type="button" id="addBook" class="btn btn-info" title="Add book"><span class="glyphicon glyphicon-plus">Add Book</span></button>
+			</div>
+			<br><br>			
+			<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th></th>
+				<th>Book</th>
+				<th>ISBN</th>
+				<th>Author</th>	
+				<th>Publisher</th>	
+				<th>Category</th>	
+				<th>Rack</th>
+				<th>No of copy</th>						
+				<th>Status</th>	
+				<th>Updated On</th>				
+				<th></th>
+				<th></th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {% for book in books %}			  
+				  <tr>
+					<td>
+					{% if book.picture %}
+						<img src="../static/images/{{book.picture}}" width="80" height="90">
+					{% else %}
+						<img src="../static/images/default.jpg" width="80" height="90">
+					{% endif %}					
+					</td>
+					<td>{{book.name}}</td>
+					<td>{{book.isbn}}</td>
+					<td>{{book.author_name}}</td>
+					<td>{{book.publisher_name}}</td>
+					<td>{{book.category_name}}</td>
+					<td>{{book.rack_name}}</td>
+					<td>{{book.no_of_copy}}</td>
+					<td>{{book.status}}</td>
+					<td>{{book.updated_on}}</td>				
+					<td><a href="{{url_for('edit_book', bookid=book.bookid)}}" class="btn btn-primary">Edit</a></td>	
+					<td><a href="{{url_for('delete_book', bookid=book.bookid)}}" class="btn btn-danger">Delete</a></td>
+				  </tr> 
+			{% endfor %}	  
+			</tbody>
+		  </table>	        
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	<div id="bookModal" class="modal fade">
+		<div class="modal-dialog">
+			<form method="post" id="bookForm" action="{{ url_for('save_book')}}">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"></button>
+						<h4 class="modal-title"><i class="fa fa-plus"></i> Edit book</h4>
+					</div>
+					<div class="modal-body">						
+						
+						<div class="form-group">							
+							<label for="book" class="control-label">Book</label>							
+							<input type="text" name="name" id="name" autocomplete="off" class="form-control" placeholder="book name"/>
+											
+						</div>
+						
+						<div class="form-group">							
+							<label for="book" class="control-label">ISBN No</label>							
+							<input type="text" name="isbn" id="isbn" autocomplete="off" class="form-control" placeholder="isbn name"/>
+											
+						</div>
+						
+						<div class="form-group">							
+							<label for="book" class="control-label">No of copy</label>			
+							<input type="number" name="no_of_copy" id="no_of_copy" autocomplete="off" class="form-control" placeholder="No of copy"/>
+						</div>
+						
+						<div class="form-group">							
+							<label for="author" class="control-label">Author</label>
+							<select name="author" id="author" class="form-control">
+								<option value="">Select</option>
+								{% for author in authors %}
+									<option value="{{author.authorid}}">{{author.name}}</option>
+								{% endfor %}	  							
+							</select>
+						</div>
+						
+						
+						<div class="form-group">							
+							<label for="publisher" class="control-label">Publisher</label>
+							<select name="publisher" id="publisher" class="form-control">
+								<option value="">Select</option>
+								{% for publisher in publishers %}
+									<option value="{{publisher.publisherid}}">{{publisher.name}}</option>
+								{% endfor %}								
+							</select>
+						</div>
+
+						<div class="form-group">							
+							<label for="category" class="control-label">Category</label>
+							<select name="category" id="category" class="form-control">
+								<option value="">Select</option>
+								{% for category in categories %}
+									<option value="{{category.categoryid}}">{{category.name}}</option>
+								{% endfor %}								
+							</select>
+						</div>								
+					
+						<div class="form-group">							
+							<label for="rack" class="control-label">Rack</label>
+							<select name="rack" id="rack" class="form-control">
+								<option value="">Select</option>
+								{% for rack in racks %}
+									<option value="{{rack.categoryid}}">{{rack.name}}</option>
+								{% endfor %}								
+							</select>
+						</div>	
+						
+						
+						<div class="form-group">
+							<label for="status" class="control-label">Status</label>							
+							<select class="form-control" id="status" name="status"/>
+								<option value="">Select</option>							
+								<option value="Enable">Enable</option>
+								<option value="Disable">Disable</option>								
+							</select>							
+						</div>				
+						
+										
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" name="bookid" id="bookid" />					
+						<input type="hidden" name="action" id="action" value="" />
+						<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>	
+  </body>
+</html>

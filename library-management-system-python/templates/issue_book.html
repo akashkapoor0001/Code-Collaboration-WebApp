@@ -1,0 +1,116 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/issue_books.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main col-md-2"> 
+		<h3>Issued Book</h3>
+			<br>
+			<div class="float-right mb-2 col-md-2">
+				<button type="button" id="issueBook" class="btn btn-info" title="Add book"><span class="glyphicon glyphicon-plus">Issue Book</span></button>
+			</div>
+			<br><br>	
+			<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th>Id</th>				
+				<th>Book</th>
+				<th>ISBN</th>
+				<th>User</th>	
+				<th>Issue Date</th>	
+				<th>Expected Return</th>	
+				<th>Return Date</th>											
+				<th>Status</th>													
+				<th></th>
+				<th></th>		
+			  </tr>
+			</thead>
+			<tbody>
+			  {% for issue_book in issue_books %}			  
+				  <tr>					
+					<td>{{issue_book.issuebookid}}</td>
+					<td>{{issue_book.book_name}}</td>
+					<td>{{issue_book.first_name}}</td>
+					<td>{{issue_book.issue_date_time}}</td>
+					<td>{{issue_book.expected_return_date}}</td>
+					<td>{{issue_book.return_date_time}}</td>
+					<td>{{issue_book.status}}</td>								
+					<td><a href="{{url_for('edit_issue_book', issuebookid=issue_book.issuebookid)}}" class="btn btn-primary">Edit</a></td>	
+					<td><a href="{{url_for('delete_issue_book', issuebookid=issue_book.issuebookid)}}" class="btn btn-danger">Delete</a></td>
+				  </tr> 
+			{% endfor %}	  
+			</tbody>
+		  </table>	        
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	<div id="issuedBookModal" class="modal fade">
+		<div class="modal-dialog">
+			<form method="post" id="issuedBookForm" action="{{ url_for('save_issue_book')}}">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"></button>
+						<h4 class="modal-title"><i class="fa fa-plus"></i> Edit issued book</h4>
+					</div>
+					<div class="modal-body">								
+						<div class="form-group">							
+							<label for="rack" class="control-label">Available Books</label>
+							<select name="book" id="book" class="form-control">
+								<option value="">Select</option>
+								{% for book in books %}
+									<option value="{{book.bookid}}">{{book.name}}</option>
+								{% endfor %}										
+							</select>
+						</div>	
+						
+						<div class="form-group">							
+							<label for="rack" class="control-label">User</label>
+							<select name="users" id="users" class="form-control">
+								<option value="">Select</option>
+								{% for user in users %}
+									<option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
+								{% endfor %}								
+							</select>
+						</div>	
+						
+						
+						<div class="form-group">							
+							<label for="expected date" class="control-label">Expected Return Date</label>
+							<input type="datetime-local" step="1" name="expected_return_date" id="expected_return_date" autocomplete="off" class="form-control"/>								
+						</div>
+						
+						
+						<div class="form-group">							
+							<label for="expected date" class="control-label">Return Date</label>
+							<input type="datetime-local" step="1" name="return_date" id="return_date" autocomplete="off" class="form-control"/>								
+						</div>
+						
+						
+						<div class="form-group">
+							<label for="status" class="control-label">Status</label>			
+							<select class="form-control" id="status" name="status"/>
+								<option value="">Select</option>							
+								<option value="Issued">Issued</option>
+								<option value="Returned">Returned</option>
+								<option value="Not Return">Not Return</option>										
+							</select>							
+						</div>				
+						
+										
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" name="issuebookid" id="issuebookid" />					
+						<input type="hidden" name="action" id="action" value="addIssueBook" />
+						<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>	
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="user.css">
+    <title>Login Page</title>
+</head>
+<body>
+    <img src="https://www.denverlibrary.org/sites/dplorg/files/2021-05/nostrings.jpeg" alt="" class="bg-img">
+    <div class="login-container">
+        <h1>USER</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <div id="error-message" class="error-message"></div>
+        <p>Don't have an account? <a href="registeruser.html">Register here</a></p>
+    </div>
+
+    <script src="user.js"></script>
+</body>
+</html>

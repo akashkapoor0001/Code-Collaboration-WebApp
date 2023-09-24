@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-sm bg-dark">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+     <span class="navbar-toggler-icon"></span>
+    </button>    
+    <div class="navbar-collapse collapse" id="collapsingNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+           <h1><a class="nav-link" href="#">Library Management System <span class="sr-only">LMS</span></a></h1>
+        </li>       
+      </ul> 	  
+	  <ul class="navbar-nav ml-auto">		
+		{% if session['userid'] %}
+			<li class="nav-item">
+				<a class="nav-link" href="#">{{session.name}} </a> |
+			</li>		
+			<li class="nav-item">		 
+			  <a class="nav-link" href="{{ url_for('logout') }}"> Logout</a>			  
+			</li>		
+		{% else %}
+			<li class="nav-item">
+				  <a class="nav-link" href="index.php">Login</a>         
+			</li>
+		{% endif %}
+      </ul>	  
+    </div>
+  </nav>
+  
+  
+  

@@ -1,0 +1,51 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/rack.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>Edit Rack</h3>
+		<br>
+        {% for rack in racks %}
+        <form method="post" id="rackForm" action="{{ url_for('saveRack')}}">
+            <div class="modal-content">                
+                <div class="modal-body">						
+                    
+                    <div class="form-group">							
+                        <label for="category" class="control-label">Rack Name</label>							
+                        <input type="text" name="name" id="name" autocomplete="off" class="form-control" placeholder="category name" value="{{rack.name}}"/>
+                                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status" class="control-label">Status</label>							
+                        <select class="form-control" id="status" name="status"/>
+                            <option value="">Select</option>							
+                            <option value="Enable" {% if rack.status == 'Enable' %}selected="selected" {% endif %}>Enable</option>
+                            <option value="Disable"  {% if rack.status == 'Disable' %}selected="selected" {% endif %}>Disable</option>								
+                        </select>							
+                    </div>				
+                    
+                                    
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="rackid" id="rackid" value="{{rack.rackid}}" />					
+                    <input type="hidden" name="action" id="action" value="updateRack" />
+                    <input type="submit" name="save" id="save" class="btn btn-info" value="Save" />                    
+                </div>
+            </div>
+        </form>        
+        {% endfor %}	
+    </div>
+			      
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+
+	
+	</div>	
+  </body>
+</html>

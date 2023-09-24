@@ -1,0 +1,96 @@
+{% include 'header.html' %}
+<script src="{{ url_for('static',filename='js/user.js') }}"></script>
+<body>
+  <div class="container-fluid" id="main">
+	{% include 'top_menus.html' %}  	
+    <div class="row row-offcanvas row-offcanvas-left">   
+	  {% include 'left_menus.html' %}	
+      <div class="col-md-9 col-lg-10 main"> 
+		<h3>User Listing</h3>
+			<br>
+			<div class="float-right mb-2 col-md-2">
+				<button type="button" id="addUser" class="btn btn-info" title="Add book"><span class="glyphicon glyphicon-plus">Add User</span></button>
+			</div>
+			<br><br>
+			<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Role</th>				
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+			  </tr>
+			</thead>
+			<tbody>
+			  {% for user in users %}
+			  <tr>
+				<td>{{user.first_name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.role}}</td>				
+				<td><a href="{{url_for('view_user', userid=user.id)}}" class="btn btn-success">View</a></td>
+				<td><a href="{{url_for('edit_user', userid=user.id)}}" class="btn btn-primary">Edit</a></td>
+				<td><a href="{{url_for('password_change', userid=user.id)}}" class="btn btn-warning">Change Password</a></td>
+				<td><a href="{{url_for('delete_user', userid=user.id)}}" class="btn btn-danger">Delete</a></td>
+			  </tr> 
+			{% endfor %}	  
+			</tbody>
+		  </table>	        
+        <hr>         
+       </div>       
+      </div>     
+    </div>
+	<div id="userModal" class="modal fade">
+		<div class="modal-dialog">
+			<form method="post" id="userForm" action="{{ url_for('save_user')}}">
+				<div class="modal-content">
+					<div class="modal-header">						
+						<h4 class="modal-title"><i class="fa fa-plus"></i> Edit User</h4>
+					</div>
+					<div class="modal-body">						
+						
+						<div class="form-group">
+							<label for="country" class="control-label">Role</label>							
+							<select class="form-control" id="role" name="role"/>
+								<option value="">Select Role</option>							
+								<option value="admin">Admin</option>
+								<option value="user">User</option>								
+							</select>							
+						</div>
+						
+						<div class="form-group">							
+							<label for="first name" class="control-label">First Name</label>							
+							<input type="text" name="first_name" id="first_name" autocomplete="off" class="form-control" placeholder="first name"/>
+											
+						</div>
+						
+						<div class="form-group"
+							<label for="last name" class="control-label">Last Name</label>
+							<input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" >			
+						</div>	
+
+						<div class="form-group"
+							<label for="email" class="control-label">Email</label>
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email" >			
+						</div>
+						
+						<div class="form-group"
+							<label for="new password" class="control-label">New Password</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="password" >			
+						</div>
+										
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" name="userid" id="userid" />						
+						<input type="hidden" name="action" id="action" value="" />
+						<input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+  </body>
+</html>
