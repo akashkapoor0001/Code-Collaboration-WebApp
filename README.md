@@ -1,9 +1,9 @@
-#Code Collaboration WebApp#
+**Code Collaboration WebApp**
 
-###Introduction:
+**Introduction:**
 Our Code Collaboration WebApp allows multiple users to collaborate in real-time on a shared notepad. Built with HTML, CSS, JavaScript, and WebSocket technology, this application provides a seamless and interactive platform for teams to write, edit, and view code simultaneously.
 
-###Features:
+**Features:**
 
 ##Real-Time Collaboration: Users can see changes made by other collaborators in real-time, enabling seamless teamwork and communication.
 WebSocket Integration: The WebSocket protocol facilitates instant communication between the server and clients, ensuring synchronized updates across all connected devices.
@@ -13,21 +13,20 @@ Version History: Access previous versions of the document to track changes and r
 Customizable Themes: Choose from a selection of themes to personalize the appearance of the notepad, catering to individual preferences and enhancing user experience.
 How It Works:
 
-##Initialization: Upon accessing the web application, users are greeted with a blank notepad interface ready for collaboration.
+**Initialization:** Upon accessing the web application, users are greeted with a blank notepad interface ready for collaboration.
 WebSocket Connection: The application establishes a WebSocket connection with the server, enabling real-time communication between users.
 Collaborative Editing: Users can type, edit, and delete text within the notepad, with changes instantly reflected for all connected collaborators.
 User Presence: A user list or indicator displays the presence of other collaborators, allowing for awareness of concurrent editing activity.
 Syntax Highlighting: The application applies syntax highlighting to code snippets, improving readability and comprehension for all users.
 Version Control: Accessible version history allows users to review past edits, facilitating collaboration and maintaining document integrity.
 
-###Implementation:
+**Implementation:**
 
-Frontend (HTML/CSS/JavaScript):
+**Frontend (HTML/CSS/JavaScript):**
 HTML provides the structure of the web application, defining the layout and components.
 CSS styles the user interface, enhancing aesthetics and usability.
 JavaScript handles client-side interactions, including WebSocket communication and DOM manipulation for real-time updates.
-Backend (WebSocket Server):
+**Backend (WebSocket Server):**
 The WebSocket server facilitates bidirectional communication between clients, transmitting and receiving messages to synchronize collaborative edits.
 Implemented using WebSocket libraries/frameworks in a server-side programming language (e.g., Node.js, Python, etc.).
-Database Integration (Optional):
-For version control and document persistence, integrate a database to store and retrieve document data, supporting features like version history and document recovery.
+
