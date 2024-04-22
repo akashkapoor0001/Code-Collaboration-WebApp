@@ -57,12 +57,17 @@ Implemented using WebSocket libraries/frameworks in a server-side programming la
 ***To run Code Collaboration locally, follow these steps:***
 
 Clone the repository to your local machine using git clone https://github.com/akashkapoor0001/Code-Collaboration-WebApp.
+
 Run the index.html file by using the Go Live button in the VS Code Editor.
 
-**Technologies Used**
+**<h2>Technologies Used</h2>**
+
 HTML
+
 CSS
+
 JavaScript
+
 WebSockets (TCP Connection)
 
 **<h2>Contributors</h2>**
