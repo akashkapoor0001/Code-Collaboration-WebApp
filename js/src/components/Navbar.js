@@ -30,7 +30,7 @@ export default {
       <nav class="navbar navbar-dark bg-dark">
           <div class="container-fluid">
               <a class="navbar-brand d-flex align-items-center" href="#">
-                  <img src="/public/assets/C1.png" width="30" class="mr-3">
+                  <img src="/public/assets/icon.png" width="30" class="mr-3">
                   <h6 class="ms-2 mb-0">Code Collaboration</h6>
               </a>
               
