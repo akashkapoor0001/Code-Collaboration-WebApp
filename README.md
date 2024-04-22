@@ -1,4 +1,4 @@
-****Code Collaboration WebApp****
+****<h1>Code Collaboration WebApp</h1>****
 
 **Introduction:**
 Our Code Collaboration WebApp allows multiple users to collaborate in real-time on a shared notepad. Built with HTML, CSS, JavaScript, and WebSocket technology, this application provides a seamless and interactive platform for teams to write, edit, and view code simultaneously.
