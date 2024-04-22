@@ -5,7 +5,7 @@ Our Code Collaboration WebApp allows multiple users to collaborate in real-time 
 
 **Features:**
 
-##Real-Time Collaboration: Users can see changes made by other collaborators in real-time, enabling seamless teamwork and communication.
+**Real-Time Collaboration:** Users can see changes made by other collaborators in real-time, enabling seamless teamwork and communication.
 WebSocket Integration: The WebSocket protocol facilitates instant communication between the server and clients, ensuring synchronized updates across all connected devices.
 Syntax Highlighting: Enhance code readability with syntax highlighting, making it easier for users to identify different programming elements.
 User Presence Indication: Visual cues indicate the presence of other users, allowing collaborators to know who else is currently viewing or editing the document.
