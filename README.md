@@ -70,13 +70,6 @@ JavaScript
 
 WebSockets (TCP Connection)
 
-**<h2>Contributors</h2>**
-
-
-
-
-
-
 **<h2>License</h2>**
 This project is licensed under the MIT License.
 
